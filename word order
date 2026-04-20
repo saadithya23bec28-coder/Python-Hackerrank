@@ -1,0 +1,25 @@
+from collections import OrderedDict
+
+def solve():
+    n = int(input())
+    words = OrderedDict()
+
+    for _ in range(n):
+        word = input().strip()
+        # Increment count if word exists, otherwise initialize it to 1
+        if word in words:
+            words[word] += 1
+        else:
+            words[word] = 1
+
+    # 1. Print the number of distinct words
+    print(len(words))
+   
+    # 2. Print the counts of each word in order of appearance
+    # We convert values to strings to use .join() for efficient printing
+    counts = [str(val) for val in words.values()]
+    print(" ".join(counts))
+
+if __name__ == '__main__':
+    solve()
+

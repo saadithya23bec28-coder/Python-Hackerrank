@@ -1,0 +1,21 @@
+import re
+
+# Read N (rows) and M (columns)
+n, m = map(int, input().split())
+
+# Read the matrix rows
+matrix = [input() for _ in range(n)]
+
+# 1. Transpose the matrix to read columns
+# zip(*matrix) takes characters from each column
+# "".join(column) merges them into one string
+decoded_string = "".join(["".join(column) for column in zip(*matrix)])
+
+# 2. Use Regex to replace symbols between alphanumeric characters
+# \w represents [a-zA-Z0-9]
+# [^\w]+ matches one or more non-alphanumeric characters
+# (?<=\w) ensures there is an alphanumeric char before
+# (?=\w) ensures there is an alphanumeric char after
+cleaned_script = re.sub(r'(?<=\w)[^\w]+(?=\w)', ' ', decoded_string)
+
+print(cleaned_script)
